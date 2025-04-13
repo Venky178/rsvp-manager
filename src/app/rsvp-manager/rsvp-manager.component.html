@@ -1,0 +1,30 @@
+<div class ="container">
+    <h1>🎉 RSVP Manager</h1>
+  
+    <!-- Input Form -->
+    <form (ngSubmit)="handleSubmit()" #rsvpForm="ngForm">
+      <input type="text" placeholder="Player Name" [(ngModel)]="playerName" name="name" required />
+      <select [(ngModel)]="rsvpStatus" name="status" required>
+        <option value="">Select Status</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Maybe">Maybe</option>
+      </select>
+      <button type="submit">Add/Update RSVP</button>
+    </form>
+  
+    <!-- Stats Section -->
+    <div class="stats" *ngIf="rsvpEntries.size > 0">
+
+      <p>Total: {{ stats.total }} | Yes: {{ stats.yes }} | No: {{ stats.no }} | Maybe: {{ stats.maybe }}</p>
+    </div>
+  
+    <!-- Confirmed Attendees -->
+    <div *ngIf="confirmed.length">
+      <h2>✅ Confirmed Attendees</h2>
+      <ul>
+        <li *ngFor="let entry of confirmed">{{ entry.player.name }}</li>
+      </ul>
+    </div>
+  </div>
+  
